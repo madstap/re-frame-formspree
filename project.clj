@@ -1,4 +1,4 @@
-(defproject madstap/re-frame-formspree "0.1.0-SNAPSHOT"
+(defproject madstap/re-frame-formspree "0.1.0"
   :description "Formspree effect handler for re-frame"
   :url "github.com/madstap/re-frame-formspree"
   :license {:name "Eclipse Public License"
