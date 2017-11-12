@@ -1,20 +1,8 @@
 (ns madstap.re-frame.formspree-fx
   (:require
-   [clojure.spec.alpha :as s]
-   [clojure.string :as str]
    [re-frame.core :as rf]
    [day8.re-frame.http-fx] ;; For side effects!
    [ajax.core :as ajax]))
-
-(s/def ::email (s/and string? (complement str/blank?)))
-(s/def ::params map?)
-(s/def ::re-frame-dispatch
-  (s/and vector? (s/cat :k keyword? :args (s/* any?))))
-(s/def ::on-failure ::re-frame-dispatch)
-(s/def ::on-success ::re-frame-dispatch)
-(s/def ::args
-  (s/keys :req-un [::email ::params]
-          :opt-un [::on-success ::on-failure]))
 
 (rf/reg-event-fx ::send
   [rf/trim-v]
@@ -36,5 +24,4 @@
 
 (rf/reg-fx :formspree
   (fn [args]
-    (s/assert ::args args)
     (rf/dispatch [::send args])))
